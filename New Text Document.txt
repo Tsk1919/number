@@ -1,0 +1,33 @@
+sh label: '', script: 'scp /root/.jenkins/workspace/dev/webapp/target/webapp.war  ubuntu@172.31.33.24:var/lib/tomcat7/webapps/qaenv.war'
+
+
+
+node('master')
+{
+    stage('c_download')
+    {
+    git 'https://github.com/selenium-saikrishna/maven.git'
+    }
+    stage('c_build')
+    {
+    sh label: '', script: 'mvn package'
+    }
+    stage('c_deploy')
+    {
+    sh label: '', script: 'scp /root/.jenkins/workspace/dev/webapp/target/webapp.war  ubuntu@172.31.33.24:var/lib/tomcat7/webapps/qaenv.war'
+    }
+    stage('c_test')
+    {
+    sh label: '', script: 'scp /root/.jenkins/workspace/dev/webapp/target/webapp.war  ubuntu@172.31.32.177:var/lib/tomcat7/webapps/prodenv.war'
+    }
+}
+
+
+
+
+
+
+Hello this is Sai Kumar
+I recently done my Post Graduation form Osmania  University.
+I am good with Amazon Web Services and DevOps.
+I am looking fresher DevOps-Engineer position 
